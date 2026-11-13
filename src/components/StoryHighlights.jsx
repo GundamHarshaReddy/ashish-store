@@ -82,18 +82,18 @@ export default function StoryHighlights({
   return (
     <>
       {/* HORIZONTAL STORY CIRCLES */}
-      <section className="w-full bg-[#efefef] py-4 px-4 md:px-8 border-b border-neutral-300/50 overflow-x-auto no-scrollbar">
-        <div className="max-w-[1720px] mx-auto flex items-center gap-6 md:gap-8 justify-start sm:justify-center">
+      <section className="w-full bg-[#efefef] py-2.5 sm:py-3 px-2 sm:px-4 border-b border-neutral-300/60 overflow-x-auto no-scrollbar">
+        <div className="flex items-center gap-4 sm:gap-6 justify-start md:justify-center w-full min-w-max md:min-w-0">
           {storeData.stories.map((story, idx) => (
             <button
               key={story.id}
               onClick={() => openStory(idx)}
-              className="flex flex-col items-center gap-2 group shrink-0 focus:outline-hidden"
+              className="flex flex-col items-center gap-1.5 group shrink-0 focus:outline-hidden cursor-pointer"
             >
               {/* Outer ring */}
-              <div className="relative p-[2.5px] rounded-full transition-transform duration-300 group-hover:scale-105 bg-gradient-to-tr from-orange-500 via-rose-500 to-blue-700">
+              <div className="relative p-[2px] rounded-full transition-transform duration-300 group-hover:scale-105 bg-gradient-to-tr from-orange-500 via-rose-500 to-blue-700">
                 <div className="p-0.5 bg-white rounded-full">
-                  <div className="w-16 h-16 md:w-20 md:h-20 rounded-full overflow-hidden bg-neutral-200">
+                  <div className="w-13 h-13 sm:w-15 sm:h-15 md:w-16 md:h-16 rounded-full overflow-hidden bg-neutral-200">
                     <img
                       src={story.image}
                       alt={story.title}
@@ -105,10 +105,10 @@ export default function StoryHighlights({
 
               {/* Title & badge */}
               <div className="text-center">
-                <span className="text-[11px] md:text-xs font-semibold tracking-tight text-neutral-900 block group-hover:text-black">
+                <span className="text-[10px] sm:text-[11px] font-semibold tracking-tight text-neutral-900 block group-hover:text-black whitespace-nowrap">
                   {story.title}
                 </span>
-                <span className="text-[9px] font-mono uppercase text-neutral-500 block">
+                <span className="text-[8px] sm:text-[9px] font-mono uppercase text-neutral-500 block whitespace-nowrap">
                   {story.linkText}
                 </span>
               </div>

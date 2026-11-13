@@ -4,12 +4,12 @@ import { storeData } from '../data/storeData';
 
 export default function FeaturedCollection({ onOpenQuickView, onAddToCart }) {
   return (
-    <section id="latest-drop" className="w-full py-12 md:py-16 px-4 md:px-8 bg-[#efefef]">
-      <div className="max-w-[1720px] mx-auto">
+    <section id="latest-drop" className="w-full pt-4 md:pt-6 pb-4 md:pb-6 px-2 sm:px-3 md:px-5 lg:px-6 bg-[#efefef]">
+      <div className="w-full">
         {/* Section Header */}
-        <div className="flex items-baseline justify-between mb-8 pb-3 border-b border-neutral-300">
+        <div className="flex items-baseline justify-between mb-3 md:mb-4 pb-2 border-b border-neutral-300">
           <div>
-            <span className="text-[10px] font-mono uppercase tracking-widest text-neutral-500 block mb-1">
+            <span className="text-[10px] font-mono uppercase tracking-widest text-neutral-500 block mb-0.5">
               SPRING '26 CAPSULE
             </span>
             <h2 className="font-anton text-2xl md:text-4xl tracking-wider text-black uppercase">
@@ -26,7 +26,7 @@ export default function FeaturedCollection({ onOpenQuickView, onAddToCart }) {
         </div>
 
         {/* Product Grid: 4 columns desktop, 2 columns mobile */}
-        <div className="grid grid-cols-2 lg:grid-cols-4 gap-3 md:gap-6">
+        <div className="grid grid-cols-2 lg:grid-cols-4 gap-2 sm:gap-2.5 md:gap-3">
           {storeData.latestDropProducts.map((product) => (
             <div
               key={product.id}

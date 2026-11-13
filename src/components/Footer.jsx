@@ -15,25 +15,25 @@ export default function Footer({ onSelectCategory }) {
   };
 
   return (
-    <footer className="w-full bg-[#111111] text-white pt-16 pb-24 md:pb-16 px-4 md:px-8 border-t border-neutral-800 relative overflow-hidden">
-      <div className="max-w-[1720px] mx-auto">
+    <footer className="w-full bg-[#111111] text-white pt-8 pb-20 md:pb-8 px-2 sm:px-4 md:px-6 border-t border-neutral-800 relative overflow-hidden">
+      <div className="w-full">
         {/* Massive Stylized Watermark Branding */}
-        <div className="border-b border-neutral-800 pb-12 mb-12 select-none overflow-hidden">
-          <div className="text-center font-anton text-6xl sm:text-8xl md:text-[140px] lg:text-[180px] leading-none tracking-[0.12em] text-neutral-800/60 uppercase">
+        <div className="border-b border-neutral-800 pb-6 mb-6 select-none overflow-hidden">
+          <div className="text-center font-anton text-5xl sm:text-7xl md:text-[110px] lg:text-[140px] leading-none tracking-[0.12em] text-neutral-800/60 uppercase">
             ASHISH
           </div>
-          <p className="text-center font-mono text-[11px] md:text-xs text-neutral-400 tracking-[0.3em] uppercase mt-2">
+          <p className="text-center font-mono text-[10px] md:text-xs text-neutral-400 tracking-[0.25em] uppercase mt-2">
             HIGH-END CONTEMPORARY STREETWEAR • EST. 2020
           </p>
         </div>
 
         {/* Newsletter & Club Signup */}
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 mb-16 pb-12 border-b border-neutral-800">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 mb-8 pb-6 border-b border-neutral-800">
           <div className="lg:col-span-6">
-            <span className="font-mono text-[10px] uppercase tracking-widest text-orange-500 block mb-2">
+            <span className="font-mono text-[10px] uppercase tracking-widest text-orange-500 block mb-1">
               EXCLUSIVE ACCESS
             </span>
-            <h3 className="font-anton text-2xl md:text-3xl tracking-wide uppercase mb-2">
+            <h3 className="font-anton text-xl md:text-2xl tracking-wide uppercase mb-1">
               Join the ASHISH Club
             </h3>
             <p className="text-xs md:text-sm text-neutral-400 max-w-md">
@@ -55,11 +55,11 @@ export default function Footer({ onSelectCategory }) {
                   onChange={(e) => setEmail(e.target.value)}
                   placeholder="Enter your email address..."
                   required
-                  className="flex-1 bg-neutral-900 border border-neutral-700 text-white placeholder-neutral-500 px-4 py-3 rounded-sm text-xs font-mono focus:outline-hidden focus:border-white transition-colors"
+                  className="flex-1 bg-neutral-900 border border-neutral-700 text-white placeholder-neutral-500 px-4 py-2.5 rounded-sm text-xs font-mono focus:outline-hidden focus:border-white transition-colors"
                 />
                 <button
                   type="submit"
-                  className="bg-white hover:bg-neutral-200 text-black font-semibold px-6 py-3 rounded-sm text-xs uppercase tracking-wider transition-colors flex items-center justify-center gap-2 shrink-0"
+                  className="bg-white hover:bg-neutral-200 text-black font-semibold px-6 py-2.5 rounded-sm text-xs uppercase tracking-wider transition-colors flex items-center justify-center gap-2 shrink-0 cursor-pointer"
                 >
                   <span>Subscribe</span>
                   <ArrowRight size={14} />
@@ -70,7 +70,7 @@ export default function Footer({ onSelectCategory }) {
         </div>
 
         {/* 4 Footer Navigation Columns */}
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-8 mb-16 text-xs">
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-6 mb-8 text-xs">
           {/* Column 1: Popular Searches */}
           <div>
             <h4 className="font-mono text-[11px] uppercase tracking-wider text-neutral-400 mb-4 pb-1 border-b border-neutral-800">
@@ -149,7 +149,7 @@ export default function Footer({ onSelectCategory }) {
         </div>
 
         {/* Bottom Credits & Country Selector */}
-        <div className="pt-8 border-t border-neutral-800 flex flex-col md:flex-row items-center justify-between gap-4 text-neutral-500 font-mono text-[11px]">
+        <div className="pt-4 border-t border-neutral-800 flex flex-col md:flex-row items-center justify-between gap-3 text-neutral-500 font-mono text-[11px]">
           <div className="flex items-center gap-4">
             <span>© {new Date().getFullYear()} ASHISH. ALL RIGHTS RESERVED.</span>
             <span className="hidden sm:inline">•</span>

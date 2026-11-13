@@ -7,15 +7,15 @@ export default function StoresSection() {
   const activeStore = storeData.stores[selectedStoreIndex];
 
   return (
-    <section id="stores-section" className="w-full py-14 md:py-20 px-4 md:px-8 bg-[#efefef] border-t border-neutral-300">
-      <div className="max-w-[1720px] mx-auto">
+    <section id="stores-section" className="w-full pt-4 md:pt-6 pb-4 md:pb-6 px-2 sm:px-3 md:px-5 lg:px-6 bg-[#efefef] border-t border-neutral-300">
+      <div className="w-full">
         {/* Header */}
-        <div className="mb-8 pb-3 border-b border-neutral-300 flex flex-col sm:flex-row sm:items-baseline justify-between gap-2">
+        <div className="mb-3 md:mb-4 pb-2 border-b border-neutral-300 flex flex-col sm:flex-row sm:items-baseline justify-between gap-1">
           <div>
-            <span className="text-[10px] font-mono uppercase tracking-widest text-neutral-500 block mb-1">
+            <span className="text-[10px] font-mono uppercase tracking-widest text-neutral-500 block mb-0.5">
               RETAIL SPACES & DESTINATIONS
             </span>
-            <h2 className="font-anton text-2xl md:text-5xl tracking-wider text-black uppercase">
+            <h2 className="font-anton text-2xl md:text-4xl tracking-wider text-black uppercase">
               Stores across India
             </h2>
           </div>
@@ -25,7 +25,7 @@ export default function StoresSection() {
         </div>
 
         {/* City Filter Pills */}
-        <div className="flex gap-2 overflow-x-auto no-scrollbar pb-4 mb-6">
+        <div className="flex gap-2 overflow-x-auto no-scrollbar pb-2 mb-3">
           {storeData.stores.map((store, idx) => (
             <button
               key={store.id}

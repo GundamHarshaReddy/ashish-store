@@ -42,6 +42,42 @@ export const storeData = {
       media: "/images/products/drop_red_dragonfly_2.jpg",
       badge: "LIMITED",
       linkText: "Explore More"
+    },
+    {
+      id: "story-5",
+      title: "Ashish Bags",
+      tag: "Leather",
+      image: "/images/products/bag_crest_duffle.jpg",
+      media: "/images/collections/collection_bags_editorial.jpg",
+      badge: "FLAGSHIP",
+      linkText: "Shop Bags"
+    },
+    {
+      id: "story-6",
+      title: "Racing Club",
+      tag: "Motorsport",
+      image: "/images/collections/collection_racing_club.jpg",
+      media: "/images/collections/collection_racing_club.jpg",
+      badge: "SPECIAL",
+      linkText: "Explore"
+    },
+    {
+      id: "story-7",
+      title: "Winter '25",
+      tag: "Outerwear",
+      image: "/images/collections/collection_winter_2025.jpg",
+      media: "/images/collections/collection_winter_2025.jpg",
+      badge: "ARCHIVE",
+      linkText: "Discover"
+    },
+    {
+      id: "story-8",
+      title: "Yacht Club",
+      tag: "Resort",
+      image: "/images/collections/collection_yacht.jpg",
+      media: "/images/collections/collection_yacht.jpg",
+      badge: "EXCLUSIVE",
+      linkText: "Shop Yacht"
     }
   ],
 
@@ -142,6 +178,54 @@ export const storeData = {
       badge: "LIMITED",
       sizes: ["S", "M", "L", "XL", "XXL"],
       description: "Heavyweight 300gsm chalk white oversized tee featuring cursive archival script high-density embroidery."
+    },
+    {
+      id: "ld-5",
+      title: "Red Dragonfly Charcoal T-Shirt",
+      category: "T-Shirts",
+      price: 7800,
+      compareAtPrice: 9000,
+      imagePrimary: "/images/products/drop_red_dragonfly_2.jpg",
+      imageSecondary: "/images/products/drop_red_dragonfly_1.jpg",
+      badge: "TRENDING",
+      sizes: ["S", "M", "L", "XL", "XXL"],
+      description: "Heavyweight vintage charcoal combed cotton tee with signature botanical dragonfly embroidery."
+    },
+    {
+      id: "ld-6",
+      title: "Blu Brick Knitted Camp Polo",
+      category: "Polos",
+      price: 6500,
+      compareAtPrice: null,
+      imagePrimary: "/images/products/drop_blu_brick_polo_2.jpg",
+      imageSecondary: "/images/products/drop_blu_brick_polo_1.jpg",
+      badge: "POPULAR",
+      sizes: ["S", "M", "L", "XL"],
+      description: "Cerulean textured waffle brick camp polo with relaxed ribbed silhouette and dropped shoulders."
+    },
+    {
+      id: "ld-7",
+      title: "Pink Birds Floral Hoodie",
+      category: "Hoodies",
+      price: 15500,
+      compareAtPrice: null,
+      imagePrimary: "/images/products/hoodie_pink_birds.jpg",
+      imageSecondary: "/images/products/drop_purple_brick_polo_1.jpg",
+      badge: "NEW",
+      sizes: ["S", "M", "L", "XL"],
+      description: "500gsm loopback french terry with pastel birds of paradise luxury botanical embroidery."
+    },
+    {
+      id: "ld-8",
+      title: "Red Serpent Bloom Zipper Hoodie",
+      category: "Hoodies",
+      price: 14000,
+      compareAtPrice: 16000,
+      imagePrimary: "/images/products/hoodie_red_serpent.jpg",
+      imageSecondary: "/images/products/drop_red_dragonfly_2.jpg",
+      badge: "EDITORIAL",
+      sizes: ["S", "M", "L", "XL"],
+      description: "Crimson full-zip hoodie with heavy silk chain-stitch floral serpent embroidery cascading down the back."
     }
   ],
 
@@ -327,6 +411,30 @@ export const storeData = {
       badge: "TECHNICAL",
       sizes: ["S", "M", "L", "XL"],
       description: "Weather-resistant Japanese nylon ripstop over-jacket with modular tactical utility pockets and magnetic FIDLOCK buckles."
+    },
+    {
+      id: "hd-7",
+      title: "Pink Birds Floral Hoodie",
+      category: "Hoodies",
+      price: 15500,
+      compareAtPrice: 17500,
+      imagePrimary: "/images/products/hoodie_pink_birds.jpg",
+      imageSecondary: "/images/products/hoodie_meadow_blue.jpg",
+      badge: "NEW",
+      sizes: ["S", "M", "L", "XL"],
+      description: "Heavyweight 500gsm loopback french terry with delicate birds of paradise pastel embroidery."
+    },
+    {
+      id: "hd-8",
+      title: "Charcoal Star Studded Raw Hoodie",
+      category: "Hoodies",
+      price: 17000,
+      compareAtPrice: null,
+      imagePrimary: "/images/products/hoodie_grey_star.jpg",
+      imageSecondary: "/images/products/hoodie_brown_star.jpg",
+      badge: "EXCLUSIVE",
+      sizes: ["S", "M", "L", "XL"],
+      description: "Constellation metallic star studs on vintage washed charcoal loopback fleece with raw double-stitched hem."
     }
   ],
 

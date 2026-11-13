@@ -13,12 +13,12 @@ export default function BagsSection({ onOpenQuickView, onAddToCart }) {
   };
 
   return (
-    <section className="w-full py-12 md:py-16 px-4 md:px-8 bg-[#efefef] border-t border-neutral-300">
-      <div className="max-w-[1720px] mx-auto">
+    <section id="collections" className="w-full pt-4 md:pt-6 pb-4 md:pb-6 px-2 sm:px-3 md:px-5 lg:px-6 bg-[#efefef] border-t border-neutral-300">
+      <div className="w-full">
         {/* Section Header */}
-        <div className="flex items-baseline justify-between mb-8 pb-3 border-b border-neutral-300">
+        <div className="flex items-baseline justify-between mb-3 md:mb-4 pb-2 border-b border-neutral-300">
           <div>
-            <span className="text-[10px] font-mono uppercase tracking-widest text-neutral-500 block mb-1">
+            <span className="text-[10px] font-mono uppercase tracking-widest text-neutral-500 block mb-0.5">
               LEATHER GOODS & ACCESSORIES
             </span>
             <h2 className="font-anton text-2xl md:text-4xl tracking-wider text-black uppercase">
@@ -27,24 +27,6 @@ export default function BagsSection({ onOpenQuickView, onAddToCart }) {
           </div>
 
           <div className="flex items-center gap-4">
-            {/* Scroll navigation arrows */}
-            <div className="hidden sm:flex items-center gap-1.5">
-              <button
-                onClick={() => scroll('left')}
-                className="p-2 rounded-full border border-neutral-300 bg-white hover:bg-black hover:text-white transition-colors"
-                aria-label="Previous"
-              >
-                <ChevronLeft size={16} />
-              </button>
-              <button
-                onClick={() => scroll('right')}
-                className="p-2 rounded-full border border-neutral-300 bg-white hover:bg-black hover:text-white transition-colors"
-                aria-label="Next"
-              >
-                <ChevronRight size={16} />
-              </button>
-            </div>
-
             <a
               href="#collections"
               className="flex items-center gap-1.5 text-xs md:text-sm font-semibold uppercase tracking-wider text-black hover:text-neutral-600 transition-colors group"
@@ -55,15 +37,15 @@ export default function BagsSection({ onOpenQuickView, onAddToCart }) {
           </div>
         </div>
 
-        {/* Horizontal Slider / Scrollable Grid */}
+        {/* 5-Column Edge-to-Edge Grid (Fully Occupied) */}
         <div
           ref={scrollContainerRef}
-          className="flex gap-4 md:gap-6 overflow-x-auto custom-scrollbar pb-4 snap-x snap-mandatory"
+          className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-2 sm:gap-2.5 md:gap-3"
         >
           {storeData.bagsCollection.map((item) => (
             <div
               key={item.id}
-              className="group product-card shrink-0 w-[240px] sm:w-[280px] md:w-[320px] flex flex-col justify-between bg-white rounded-sm overflow-hidden border border-neutral-200 hover:border-black transition-all duration-300 shadow-2xs hover:shadow-md cursor-pointer snap-start"
+              className="group product-card flex flex-col justify-between bg-white rounded-sm overflow-hidden border border-neutral-200 hover:border-black transition-all duration-300 shadow-2xs hover:shadow-md cursor-pointer"
               onClick={() => onOpenQuickView(item)}
             >
               {/* Image with hover transition */}

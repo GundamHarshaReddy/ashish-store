@@ -13,15 +13,15 @@ export default function DiscoverCollection({ onSelectCategory }) {
   };
 
   return (
-    <section id="collections" className="w-full py-14 md:py-20 px-4 md:px-8 bg-[#efefef] border-t border-neutral-300">
-      <div className="max-w-[1720px] mx-auto">
+    <section id="collections" className="w-full pt-4 md:pt-6 pb-4 md:pb-6 px-2 sm:px-3 md:px-5 lg:px-6 bg-[#efefef] border-t border-neutral-300">
+      <div className="w-full">
         {/* Section Header */}
-        <div className="flex items-baseline justify-between mb-8 pb-3 border-b border-neutral-300">
+        <div className="flex items-baseline justify-between mb-3 md:mb-4 pb-2 border-b border-neutral-300">
           <div>
-            <span className="text-[10px] font-mono uppercase tracking-widest text-neutral-500 block mb-1">
+            <span className="text-[10px] font-mono uppercase tracking-widest text-neutral-500 block mb-0.5">
               CURATED EDITORIAL ARCHIVES
             </span>
-            <h2 className="font-anton text-2xl md:text-5xl tracking-wider text-black uppercase">
+            <h2 className="font-anton text-2xl md:text-4xl tracking-wider text-black uppercase">
               discover collection
             </h2>
           </div>
@@ -29,31 +29,31 @@ export default function DiscoverCollection({ onSelectCategory }) {
           <div className="flex items-center gap-2">
             <button
               onClick={() => scroll('left')}
-              className="p-2.5 rounded-full border border-neutral-300 bg-white hover:bg-black hover:text-white transition-colors"
+              className="p-2 rounded-full border border-neutral-300 bg-white hover:bg-black hover:text-white transition-colors"
               aria-label="Previous"
             >
-              <ChevronLeft size={18} />
+              <ChevronLeft size={16} />
             </button>
             <button
               onClick={() => scroll('right')}
-              className="p-2.5 rounded-full border border-neutral-300 bg-white hover:bg-black hover:text-white transition-colors"
+              className="p-2 rounded-full border border-neutral-300 bg-white hover:bg-black hover:text-white transition-colors"
               aria-label="Next"
             >
-              <ChevronRight size={18} />
+              <ChevronRight size={16} />
             </button>
           </div>
         </div>
 
-        {/* Collection Slider Cards */}
+        {/* Collection Slider Cards - Edge-to-Edge Full Width */}
         <div
           ref={sliderRef}
-          className="flex gap-4 md:gap-6 overflow-x-auto custom-scrollbar pb-6 snap-x snap-mandatory"
+          className="flex gap-2 sm:gap-2.5 md:gap-3 overflow-x-auto custom-scrollbar pb-3 snap-x snap-mandatory"
         >
           {storeData.discoverCollections.map((col) => (
             <div
               key={col.id}
               onClick={() => onSelectCategory(col.title)}
-              className="group relative shrink-0 w-[280px] sm:w-[340px] md:w-[400px] aspect-3/4 rounded-sm overflow-hidden shadow-sm hover:shadow-xl transition-all duration-500 cursor-pointer snap-start"
+              className="group relative shrink-0 w-[240px] sm:w-[290px] md:w-[340px] lg:w-[380px] aspect-3/4 rounded-sm overflow-hidden shadow-2xs hover:shadow-xl transition-all duration-500 cursor-pointer snap-start"
             >
               {/* Background Editorial Image */}
               <img

@@ -15,23 +15,23 @@ export default function BrandAccordion() {
   };
 
   return (
-    <section className="w-full py-14 md:py-20 px-4 md:px-8 bg-[#efefef] border-t border-neutral-300">
-      <div className="max-w-[1280px] mx-auto">
+    <section className="w-full pt-6 md:pt-8 pb-6 md:pb-8 px-2 sm:px-4 md:px-6 bg-[#efefef] border-t border-neutral-300">
+      <div className="max-w-[1560px] mx-auto">
         {/* Editorial Heading */}
-        <div className="text-center mb-12">
-          <span className="text-[10px] font-mono uppercase tracking-[0.2em] text-neutral-500 block mb-2">
+        <div className="text-center mb-6 md:mb-8">
+          <span className="text-[10px] font-mono uppercase tracking-[0.2em] text-neutral-500 block mb-1">
             BRAND MANIFESTO & PHILOSOPHY
           </span>
-          <h2 className="font-anton text-2xl md:text-4xl lg:text-5xl tracking-wide uppercase text-black max-w-4xl mx-auto leading-tight">
+          <h2 className="font-anton text-2xl md:text-4xl tracking-wide uppercase text-black max-w-4xl mx-auto leading-tight">
             Feel the Luxury of Premium Streetwear with ASHISH – Best Unisex Clothing Brand in India
           </h2>
-          <p className="mt-4 text-xs md:text-sm text-neutral-600 max-w-2xl mx-auto leading-relaxed">
+          <p className="mt-2 text-xs md:text-sm text-neutral-600 max-w-2xl mx-auto leading-relaxed">
             Streetwear has transitioned from underground subculture into global high fashion. Explore how our heavyweight custom knits and fluid silhouettes shape the Indian luxury movement.
           </p>
         </div>
 
         {/* 1. Brand Philosophy Collapsible Accordions */}
-        <div className="space-y-3 mb-14">
+        <div className="space-y-2 mb-8">
           {storeData.brandEditorialSections.map((sec) => {
             const isOpen = openSectionId === sec.id;
             return (
@@ -62,15 +62,15 @@ export default function BrandAccordion() {
         </div>
 
         {/* 2. FAQs Section */}
-        <div className="pt-8 border-t border-neutral-300">
-          <div className="flex items-center gap-2 mb-6">
+        <div className="pt-5 border-t border-neutral-300">
+          <div className="flex items-center gap-2 mb-3">
             <HelpCircle size={18} className="text-black" />
             <h3 className="font-anton text-xl md:text-2xl tracking-wider uppercase text-black">
               Frequently Asked Questions (FAQS)
             </h3>
           </div>
 
-          <div className="space-y-3">
+          <div className="space-y-2">
             {storeData.faqs.map((faq, idx) => {
               const isOpen = openFaqIndex === idx;
               return (
