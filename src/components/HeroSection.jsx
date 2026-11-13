@@ -3,7 +3,7 @@ import React from 'react';
 export default function HeroSection({ onShopNow }) {
   return (
     <section className="relative w-full h-[100svh] min-h-[600px] overflow-hidden bg-white select-none">
-      {/* 1. Full-bleed Hero Campaign Model with Ethereal Blue Sky fading to White Floor */}
+      {/* 1. Full-bleed Hero Campaign Photography */}
       <div className="absolute inset-0 w-full h-full">
         <picture className="w-full h-full block">
           <source
@@ -20,16 +20,7 @@ export default function HeroSection({ onShopNow }) {
         </picture>
       </div>
 
-      {/* 2. Interactive 3D Spinning Coin (Spline 3D Viewer) */}
-      <div className="absolute top-[49%] left-1/2 -translate-x-1/2 -translate-y-1/2 w-[75vw] sm:w-[50vw] md:w-[42vw] h-[50vw] sm:h-[35vw] md:h-[30vw] max-w-[620px] max-h-[400px] pointer-events-none z-10 flex items-center justify-center overflow-hidden">
-        <spline-viewer
-          hint=""
-          url="https://prod.spline.design/fQVJRdh1QExGWyXm/scene.splinecode"
-          className="w-full h-full"
-        ></spline-viewer>
-      </div>
-
-      {/* 3. Centered "Shop now" Text Link in Crisp White with Underline */}
+      {/* 2. Centered "Shop now" Text Link with Underline */}
       <div className="absolute bottom-[9%] left-1/2 -translate-x-1/2 text-center z-20">
         <button
           onClick={onShopNow}

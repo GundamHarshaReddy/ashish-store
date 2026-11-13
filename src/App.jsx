@@ -132,7 +132,7 @@ export default function App() {
 
       {/* Main Content Sections */}
       <main className="flex-1 w-full">
-        {/* 3. Hero Section starting at top: 0 with logo floating on top */}
+        {/* 3. Hero Section starting at top: 0 */}
         <HeroSection onShopNow={scrollToLatestDrop} />
 
         {/* 4. Story Highlights Carousel */}
