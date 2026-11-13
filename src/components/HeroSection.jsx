@@ -2,16 +2,22 @@ import React from 'react';
 
 export default function HeroSection({ onShopNow }) {
   return (
-    <section className="relative w-full aspect-[16/10] sm:aspect-auto sm:h-[100svh] min-h-[320px] sm:min-h-[600px] overflow-hidden bg-white select-none">
+    <section className="relative w-full h-[100svh] min-h-[100svh] overflow-hidden bg-white select-none">
       {/* 1. Full-bleed Hero Campaign Photography */}
       <div className="absolute inset-0 w-full h-full">
-        <img
-          src="/images/hero/hero_main.jpg"
-          alt="ASHISH Luxury Contemporary Streetwear"
-          className="w-full h-full object-cover object-center"
-          loading="eager"
-          fetchPriority="high"
-        />
+        <picture className="w-full h-full block">
+          <source
+            media="(max-width: 950px)"
+            srcSet="/images/hero/hero_mobile.jpg"
+          />
+          <img
+            src="/images/hero/hero_main.jpg"
+            alt="ASHISH Luxury Contemporary Streetwear"
+            className="w-full h-full object-cover object-center"
+            loading="eager"
+            fetchPriority="high"
+          />
+        </picture>
       </div>
 
       {/* 2. Centered "Shop now" Text Link with Underline */}
