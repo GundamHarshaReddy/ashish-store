@@ -26,7 +26,7 @@ export default function Header({
   // Header background transition on scroll
   useEffect(() => {
     const handleScroll = () => {
-      if (window.scrollY > 40) {
+      if (window.scrollY > 30) {
         setIsScrolled(true);
       } else {
         setIsScrolled(false);
@@ -38,43 +38,43 @@ export default function Header({
 
   return (
     <header className="fixed top-0 inset-x-0 z-50 transition-colors duration-300">
-      {/* 1. TOP SLENDER ANNOUNCEMENT TICKER (Translucent on Hero, Solid when Scrolled) */}
+      {/* 1. TOP SLENDER ANNOUNCEMENT TICKER */}
       <div
-        className={`w-full py-1.5 px-4 md:px-8 text-[11px] font-medium tracking-wider flex items-center justify-between transition-colors duration-300 border-b select-none ${
+        className={`w-full py-1.5 px-3 sm:px-6 md:px-8 text-[10px] sm:text-[11px] font-medium tracking-wider flex items-center justify-between transition-colors duration-300 border-b select-none ${
           isScrolled
             ? 'bg-neutral-900 text-white border-neutral-800'
-            : 'bg-black/35 backdrop-blur-xs text-white/90 border-white/10'
+            : 'bg-black/40 backdrop-blur-xs text-white/90 border-white/10'
         }`}
       >
         {/* Left Notification Pill */}
         <button
           onClick={() => setShowNotificationPopup(!showNotificationPopup)}
-          className="flex items-center gap-1.5 hover:text-white transition-colors text-[10px] uppercase font-mono tracking-wider cursor-pointer"
+          className="flex items-center gap-1.5 hover:text-white transition-colors text-[9px] sm:text-[10px] uppercase font-mono tracking-wider cursor-pointer shrink-0"
         >
           <span className="w-1.5 h-1.5 rounded-full bg-orange-500 animate-pulse"></span>
           <span className="underline decoration-white/40 underline-offset-2">
-            {storeData.announcements.length} Notifications
+            {storeData.announcements.length} Alerts
           </span>
         </button>
 
         {/* Center Marquee / Active announcement */}
-        <div className="overflow-hidden whitespace-nowrap text-center max-w-xl mx-auto flex-1 px-4 cursor-pointer">
+        <div className="overflow-hidden whitespace-nowrap text-center max-w-xl mx-auto flex-1 px-2 cursor-pointer">
           <span
             key={announcementIndex}
-            className="inline-block transition-opacity duration-500 font-sans uppercase tracking-[0.16em] text-[10px] md:text-[11px]"
+            className="inline-block transition-opacity duration-500 font-sans uppercase tracking-[0.14em] sm:tracking-[0.16em] text-[9px] sm:text-[10px] md:text-[11px] truncate"
           >
             {storeData.announcements[announcementIndex]}
           </span>
         </div>
 
         {/* Right Info */}
-        <div className="hidden md:flex items-center gap-3 text-[10px] font-mono uppercase tracking-widest text-white/70">
+        <div className="hidden md:flex items-center gap-3 text-[10px] font-mono uppercase tracking-widest text-white/70 shrink-0">
           <span>INDIA (INR ₹)</span>
         </div>
 
         {/* Dropdown Notification popup */}
         {showNotificationPopup && (
-          <div className="absolute top-full left-4 mt-2 w-80 bg-neutral-950/95 backdrop-blur-md border border-neutral-700 p-4 rounded shadow-2xl text-white text-xs z-50">
+          <div className="absolute top-full left-3 sm:left-6 mt-2 w-72 sm:w-80 bg-neutral-950/95 backdrop-blur-md border border-neutral-700 p-4 rounded shadow-2xl text-white text-xs z-50">
             <div className="flex justify-between items-center mb-2 pb-2 border-b border-neutral-800">
               <span className="font-semibold uppercase tracking-wider text-[11px] font-mono">
                 Active Broadcasts
@@ -100,7 +100,7 @@ export default function Header({
 
       {/* 2. MAIN HEADER BAR (Transparent floating on Hero, Solid White on Scroll) */}
       <div
-        className={`w-full px-4 md:px-8 py-3 md:py-4 transition-all duration-300 border-b ${
+        className={`w-full px-3 sm:px-6 md:px-8 py-2.5 sm:py-3.5 md:py-4 transition-all duration-300 border-b ${
           isScrolled
             ? 'bg-white/95 backdrop-blur-md text-black border-neutral-200/90 shadow-xs'
             : 'bg-transparent text-white border-transparent'
@@ -108,10 +108,10 @@ export default function Header({
       >
         <div className="max-w-[1720px] mx-auto flex items-center justify-between relative">
           {/* LEFT: Explore Menu & Category Navigation */}
-          <div className="flex items-center gap-6">
+          <div className="flex items-center gap-4 sm:gap-6">
             <button
               onClick={onOpenNavDrawer}
-              className={`flex items-center gap-2 group font-semibold text-xs tracking-wider uppercase transition-opacity hover:opacity-75 ${
+              className={`flex items-center gap-1.5 sm:gap-2 group font-semibold text-xs tracking-wider uppercase transition-opacity hover:opacity-75 cursor-pointer ${
                 isScrolled ? 'text-black' : 'text-white'
               }`}
               aria-label="Open Explore Menu"
@@ -187,10 +187,10 @@ export default function Header({
           </div>
 
           {/* CENTER: THE LOGO FLOATING DIRECTLY ON TOP OF BANNER */}
-          <div className="absolute left-1/2 -translate-x-1/2 flex items-center justify-center">
+          <div className="absolute left-1/2 -translate-x-1/2 flex items-center justify-center pointer-events-auto">
             <a href="/" className="inline-block group py-1 text-center" aria-label="ASHISH Home">
               <span
-                className={`font-anton text-2xl sm:text-3xl tracking-[0.22em] uppercase transition-colors duration-300 drop-shadow-sm ${
+                className={`font-anton text-2xl sm:text-3xl tracking-[0.2em] sm:tracking-[0.22em] uppercase transition-colors duration-300 drop-shadow-sm select-none ${
                   isScrolled ? 'text-black' : 'text-white'
                 }`}
               >
@@ -200,11 +200,11 @@ export default function Header({
           </div>
 
           {/* RIGHT: Actions */}
-          <div className="flex items-center gap-4 md:gap-5">
-            {/* Store Locator */}
+          <div className="flex items-center gap-2.5 sm:gap-4 md:gap-5">
+            {/* Store Locator (Desktop / Tablet) */}
             <button
               onClick={onScrollToStores}
-              className={`p-1 transition-opacity hover:opacity-75 ${
+              className={`hidden sm:block p-1 transition-opacity hover:opacity-75 cursor-pointer ${
                 isScrolled ? 'text-black' : 'text-white'
               }`}
               title="Our Stores"
@@ -216,7 +216,7 @@ export default function Header({
             {/* Predictive Search */}
             <button
               onClick={onOpenSearch}
-              className={`p-1 transition-opacity hover:opacity-75 ${
+              className={`p-1 transition-opacity hover:opacity-75 cursor-pointer ${
                 isScrolled ? 'text-black' : 'text-white'
               }`}
               title="Search Products"
@@ -225,10 +225,10 @@ export default function Header({
               <Search size={18} strokeWidth={1.8} />
             </button>
 
-            {/* Account */}
+            {/* Account (Desktop only) */}
             <button
               onClick={() => alert("Member authentication portal. Login / Register with mobile or email.")}
-              className={`hidden sm:block p-1 transition-opacity hover:opacity-75 ${
+              className={`hidden sm:block p-1 transition-opacity hover:opacity-75 cursor-pointer ${
                 isScrolled ? 'text-black' : 'text-white'
               }`}
               title="Account"
@@ -240,14 +240,14 @@ export default function Header({
             {/* Cart Trigger with dynamic count */}
             <button
               onClick={onOpenCart}
-              className={`flex items-center gap-1.5 p-1 transition-opacity hover:opacity-75 relative font-mono text-xs font-semibold ${
+              className={`flex items-center gap-1 p-1 transition-opacity hover:opacity-75 relative font-mono text-xs font-semibold cursor-pointer ${
                 isScrolled ? 'text-black' : 'text-white'
               }`}
               aria-label="Shopping Cart"
             >
               <ShoppingBag size={18} strokeWidth={1.8} />
-              <span className="tracking-tighter font-mono">
-                Cart ({cartCount})
+              <span className="tracking-tighter font-mono text-[11px] sm:text-xs">
+                ({cartCount})
               </span>
             </button>
           </div>
