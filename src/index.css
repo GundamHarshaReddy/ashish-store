@@ -1,0 +1,119 @@
+@import "tailwindcss";
+
+:root {
+  --bg: #efefef;
+  --secondary-bg: #ffffff;
+  --card-bg: #ffffff;
+  --text-primary: #000000;
+  --text-secondary: #717171;
+  --border-light: #e5e5e5;
+  --border-subtle: #dcdcdc;
+  --accent-blue: #143588;
+  --accent-orange: #f25529;
+}
+
+body {
+  background-color: var(--bg);
+  color: var(--text-primary);
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  letter-spacing: -0.01em;
+  overflow-x: hidden;
+  margin: 0;
+  padding: 0;
+  -webkit-font-smoothing: antialiased;
+}
+
+.font-anton {
+  font-family: 'Anton', impact, sans-serif;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+}
+
+.font-grotesk {
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+  font-weight: 500;
+}
+
+/* Custom scrollbar for horizontal product sliders */
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+.no-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+.custom-scrollbar::-webkit-scrollbar {
+  height: 3px;
+  width: 3px;
+}
+.custom-scrollbar::-webkit-scrollbar-track {
+  background: #e2e2e2;
+  border-radius: 4px;
+}
+.custom-scrollbar::-webkit-scrollbar-thumb {
+  background: #999999;
+  border-radius: 4px;
+}
+
+/* Marquee Animation */
+@keyframes marquee {
+  0% { transform: translateX(0%); }
+  100% { transform: translateX(-50%); }
+}
+
+.animate-marquee {
+  display: flex;
+  width: max-content;
+  animation: marquee 28s linear infinite;
+}
+
+.animate-marquee:hover {
+  animation-play-state: paused;
+}
+
+/* Story ring gradient */
+.story-ring {
+  background: linear-gradient(45deg, #f25529, #e6007e, #143588);
+  padding: 2px;
+  border-radius: 9999px;
+}
+
+/* Product Card Image Zoom / Transitions */
+.product-card-img {
+  transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.4s ease;
+}
+
+.product-card:hover .product-card-img-primary {
+  opacity: 0;
+}
+.product-card:hover .product-card-img-secondary {
+  opacity: 1;
+}
+
+/* Mega menu drop animation */
+@keyframes slideDown {
+  from {
+    opacity: 0;
+    transform: translateY(-8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.mega-menu-enter {
+  animation: slideDown 0.25s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+/* Backdrop blur support */
+.drawer-backdrop {
+  background: rgba(0, 0, 0, 0.4);
+  backdrop-filter: blur(4px);
+}
+
+/* Mobile bottom nav curved notch */
+.curved-bottom-nav {
+  box-shadow: 0 -4px 20px rgba(0, 0, 0, 0.08);
+}
