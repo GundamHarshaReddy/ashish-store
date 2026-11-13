@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Search, ShoppingBag, MapPin, User, Menu, X, ChevronDown } from 'lucide-react';
+import { Search, MapPin, User, Bookmark, ChevronDown } from 'lucide-react';
 import { storeData } from '../data/storeData';
 
 export default function Header({
@@ -7,26 +7,17 @@ export default function Header({
   onOpenCart,
   onOpenSearch,
   onOpenNavDrawer,
+  onOpenStories,
   onScrollToStores,
   onOpenQuickView
 }) {
-  const [announcementIndex, setAnnouncementIndex] = useState(0);
   const [isCollectionsHovered, setIsCollectionsHovered] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
-  const [showNotificationPopup, setShowNotificationPopup] = useState(false);
 
-  // Cycle announcements
-  useEffect(() => {
-    const timer = setInterval(() => {
-      setAnnouncementIndex((prev) => (prev + 1) % storeData.announcements.length);
-    }, 4500);
-    return () => clearInterval(timer);
-  }, []);
-
-  // Header background transition on scroll
+  // Transition on scroll past hero
   useEffect(() => {
     const handleScroll = () => {
-      if (window.scrollY > 30) {
+      if (window.scrollY > 50) {
         setIsScrolled(true);
       } else {
         setIsScrolled(false);
@@ -37,218 +28,193 @@ export default function Header({
   }, []);
 
   return (
-    <header className="fixed top-0 inset-x-0 z-50 transition-colors duration-300">
-      {/* 1. TOP SLENDER ANNOUNCEMENT TICKER */}
+    <header className="fixed top-0 inset-x-0 z-50 transition-all duration-300">
+      {/* MAIN HEADER BAR */}
       <div
-        className={`w-full py-1.5 px-3 sm:px-6 md:px-8 text-[10px] sm:text-[11px] font-medium tracking-wider flex items-center justify-between transition-colors duration-300 border-b select-none ${
+        className={`w-full px-4 sm:px-6 md:px-8 py-3.5 sm:py-4 transition-colors duration-300 ${
           isScrolled
-            ? 'bg-neutral-900 text-white border-neutral-800'
-            : 'bg-black/40 backdrop-blur-xs text-white/90 border-white/10'
-        }`}
-      >
-        {/* Left Notification Pill */}
-        <button
-          onClick={() => setShowNotificationPopup(!showNotificationPopup)}
-          className="flex items-center gap-1.5 hover:text-white transition-colors text-[9px] sm:text-[10px] uppercase font-mono tracking-wider cursor-pointer shrink-0"
-        >
-          <span className="w-1.5 h-1.5 rounded-full bg-orange-500 animate-pulse"></span>
-          <span className="underline decoration-white/40 underline-offset-2">
-            {storeData.announcements.length} Alerts
-          </span>
-        </button>
-
-        {/* Center Marquee / Active announcement */}
-        <div className="overflow-hidden whitespace-nowrap text-center max-w-xl mx-auto flex-1 px-2 cursor-pointer">
-          <span
-            key={announcementIndex}
-            className="inline-block transition-opacity duration-500 font-sans uppercase tracking-[0.14em] sm:tracking-[0.16em] text-[9px] sm:text-[10px] md:text-[11px] truncate"
-          >
-            {storeData.announcements[announcementIndex]}
-          </span>
-        </div>
-
-        {/* Right Info */}
-        <div className="hidden md:flex items-center gap-3 text-[10px] font-mono uppercase tracking-widest text-white/70 shrink-0">
-          <span>INDIA (INR ₹)</span>
-        </div>
-
-        {/* Dropdown Notification popup */}
-        {showNotificationPopup && (
-          <div className="absolute top-full left-3 sm:left-6 mt-2 w-72 sm:w-80 bg-neutral-950/95 backdrop-blur-md border border-neutral-700 p-4 rounded shadow-2xl text-white text-xs z-50">
-            <div className="flex justify-between items-center mb-2 pb-2 border-b border-neutral-800">
-              <span className="font-semibold uppercase tracking-wider text-[11px] font-mono">
-                Active Broadcasts
-              </span>
-              <button
-                onClick={() => setShowNotificationPopup(false)}
-                className="text-white/60 hover:text-white"
-              >
-                <X size={14} />
-              </button>
-            </div>
-            <ul className="space-y-2">
-              {storeData.announcements.map((item, idx) => (
-                <li key={idx} className="flex items-start gap-2 text-[11px] text-neutral-300">
-                  <span className="text-orange-500 font-bold">•</span>
-                  <span>{item}</span>
-                </li>
-              ))}
-            </ul>
-          </div>
-        )}
-      </div>
-
-      {/* 2. MAIN HEADER BAR (Transparent floating on Hero, Solid White on Scroll) */}
-      <div
-        className={`w-full px-3 sm:px-6 md:px-8 py-2.5 sm:py-3.5 md:py-4 transition-all duration-300 border-b ${
-          isScrolled
-            ? 'bg-white/95 backdrop-blur-md text-black border-neutral-200/90 shadow-xs'
-            : 'bg-transparent text-white border-transparent'
+            ? 'bg-white/95 backdrop-blur-md text-black border-b border-neutral-200/90 shadow-2xs'
+            : 'bg-transparent text-white'
         }`}
       >
         <div className="max-w-[1720px] mx-auto flex items-center justify-between relative">
-          {/* LEFT: Explore Menu & Category Navigation */}
-          <div className="flex items-center gap-4 sm:gap-6">
-            <button
-              onClick={onOpenNavDrawer}
-              className={`flex items-center gap-1.5 sm:gap-2 group font-semibold text-xs tracking-wider uppercase transition-opacity hover:opacity-75 cursor-pointer ${
-                isScrolled ? 'text-black' : 'text-white'
+          {/* LEFT: New in & Collections (Hidden on mobile to preserve clean centered logo) */}
+          <div className="hidden md:flex items-center gap-6 sm:gap-8">
+            <a
+              href="#latest-drop"
+              className={`text-[12px] sm:text-[13px] font-medium transition-opacity tracking-normal ${
+                isScrolled ? 'text-black hover:opacity-60' : 'text-white/90 hover:text-white drop-shadow-xs'
               }`}
-              aria-label="Open Explore Menu"
             >
-              <Menu size={18} strokeWidth={2.2} />
-              <span className="hidden sm:inline font-mono">explore</span>
-            </button>
+              New in
+            </a>
 
-            <nav className="hidden lg:flex items-center gap-6 text-[13px] font-normal tracking-tight">
-              <a
-                href="#latest-drop"
-                className={`transition-colors text-xs font-medium hover:opacity-75 ${
-                  isScrolled ? 'text-black' : 'text-white'
+            {/* Collections with Mega Menu */}
+            <div
+              className="relative py-1"
+              onMouseEnter={() => setIsCollectionsHovered(true)}
+              onMouseLeave={() => setIsCollectionsHovered(false)}
+            >
+              <button
+                className={`flex items-center gap-1 text-[12px] sm:text-[13px] font-medium transition-opacity cursor-pointer ${
+                  isScrolled ? 'text-black hover:opacity-60' : 'text-white/90 hover:text-white drop-shadow-xs'
                 }`}
               >
-                New in
-              </a>
+                <span>Collections</span>
+                <ChevronDown
+                  size={12}
+                  className={`transition-transform duration-200 ${isCollectionsHovered ? 'rotate-180' : ''}`}
+                />
+              </button>
 
-              {/* Collections with Hover Mega Menu */}
-              <div
-                className="relative py-2"
-                onMouseEnter={() => setIsCollectionsHovered(true)}
-                onMouseLeave={() => setIsCollectionsHovered(false)}
-              >
-                <button
-                  className={`flex items-center gap-1 transition-colors text-xs font-medium hover:opacity-75 cursor-pointer ${
-                    isScrolled ? 'text-black' : 'text-white'
-                  }`}
-                >
-                  <span>Collections</span>
-                  <ChevronDown
-                    size={12}
-                    className={`transition-transform duration-200 ${isCollectionsHovered ? 'rotate-180' : ''}`}
-                  />
-                </button>
-
-                {/* Mega Menu Dropdown */}
-                {isCollectionsHovered && (
-                  <div className="absolute top-full -left-20 w-[840px] bg-white text-black border border-neutral-200/90 shadow-2xl rounded-sm p-6 mega-menu-enter z-50">
-                    <div className="flex items-center justify-between pb-3 mb-4 border-b border-neutral-100">
-                      <span className="font-anton tracking-wider text-sm text-black">
-                        FEATURED COLLECTIONS
-                      </span>
-                      <a href="#collections" className="text-xs font-mono uppercase underline hover:opacity-60 text-neutral-600">
-                        View All
-                      </a>
-                    </div>
-                    <div className="grid grid-cols-6 gap-3">
-                      {storeData.megaMenuCollections.map((col, idx) => (
-                        <a
-                          key={idx}
-                          href="#collections"
-                          className="group block text-center"
-                          onClick={() => setIsCollectionsHovered(false)}
-                        >
-                          <div className="aspect-3/4 rounded-sm overflow-hidden bg-neutral-100 mb-2 border border-neutral-200 group-hover:border-black transition-colors">
-                            <img
-                              src={col.image}
-                              alt={col.title}
-                              className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
-                            />
-                          </div>
-                          <span className="text-[11px] font-medium block leading-tight text-neutral-800 group-hover:text-black">
-                            {col.title}
-                          </span>
-                        </a>
-                      ))}
-                    </div>
+              {/* Mega Menu Dropdown */}
+              {isCollectionsHovered && (
+                <div className="absolute top-full -left-10 w-[820px] bg-white text-black border border-neutral-200 shadow-2xl rounded-sm p-6 mega-menu-enter z-50">
+                  <div className="flex items-center justify-between pb-3 mb-4 border-b border-neutral-100">
+                    <span className="font-anton tracking-wider text-sm text-black uppercase">
+                      Featured Collections
+                    </span>
+                    <a
+                      href="#collections"
+                      className="text-xs font-mono uppercase underline hover:opacity-60 text-neutral-600"
+                    >
+                      View All
+                    </a>
                   </div>
-                )}
-              </div>
-            </nav>
+                  <div className="grid grid-cols-6 gap-3">
+                    {storeData.megaMenuCollections.map((col, idx) => (
+                      <a
+                        key={idx}
+                        href="#collections"
+                        className="group block text-center"
+                        onClick={() => setIsCollectionsHovered(false)}
+                      >
+                        <div className="aspect-3/4 rounded-sm overflow-hidden bg-neutral-100 mb-2 border border-neutral-200 group-hover:border-black transition-colors">
+                          <img
+                            src={col.image}
+                            alt={col.title}
+                            className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                          />
+                        </div>
+                        <span className="text-[11px] font-medium block leading-tight text-neutral-800 group-hover:text-black">
+                          {col.title}
+                        </span>
+                      </a>
+                    ))}
+                  </div>
+                </div>
+              )}
+            </div>
           </div>
 
-          {/* CENTER: THE LOGO FLOATING DIRECTLY ON TOP OF BANNER */}
+          {/* CENTER: BRAND LOGO "ASHISH" IN BOLD BLACK GEOMETRIC LETTERING */}
           <div className="absolute left-1/2 -translate-x-1/2 flex items-center justify-center pointer-events-auto">
             <a href="/" className="inline-block group py-1 text-center" aria-label="ASHISH Home">
-              <span
-                className={`font-anton text-2xl sm:text-3xl tracking-[0.2em] sm:tracking-[0.22em] uppercase transition-colors duration-300 drop-shadow-sm select-none ${
-                  isScrolled ? 'text-black' : 'text-white'
-                }`}
-              >
+              <span className="font-anton text-2xl sm:text-[28px] md:text-3xl tracking-[0.24em] uppercase text-black select-none">
                 ASHISH
               </span>
             </a>
           </div>
 
-          {/* RIGHT: Actions */}
-          <div className="flex items-center gap-2.5 sm:gap-4 md:gap-5">
-            {/* Store Locator (Desktop / Tablet) */}
+          {/* RIGHT: EXACT ACTION ICONS MATCHING REFERENCE SCREENSHOT */}
+          <div
+            className={`ml-auto flex items-center gap-2.5 sm:gap-3.5 md:gap-4.5 ${
+              isScrolled ? 'text-black' : 'text-white'
+            }`}
+          >
+            {/* 1. Circular Stories Badge with Glowing Blue Ring & Camera Cards */}
+            <button
+              onClick={onOpenStories}
+              className="relative p-[1.5px] rounded-full hover:scale-105 transition-transform cursor-pointer"
+              title="Stories"
+              aria-label="View Stories"
+            >
+              <div className="w-7 h-7 sm:w-8 sm:h-8 rounded-full bg-gradient-to-tr from-[#0066ff] via-[#00c8ff] to-[#3b82f6] p-[2px] flex items-center justify-center shadow-[0_0_10px_rgba(0,180,255,0.6)]">
+                <div className="w-full h-full bg-[#050b14] rounded-full flex items-center justify-center overflow-hidden">
+                  <div className="w-3.5 h-3.5 text-white flex items-center justify-center">
+                    {/* Multi-story photo stack icon */}
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" className="w-3.5 h-3.5">
+                      <rect x="3" y="3" width="14" height="14" rx="2" stroke="white" fill="#0066ff" fillOpacity="0.4"/>
+                      <path d="M7 21h12a2 2 0 0 0 2-2V7" stroke="white"/>
+                    </svg>
+                  </div>
+                </div>
+              </div>
+            </button>
+
+            {/* 2. Store Locator Pin */}
             <button
               onClick={onScrollToStores}
-              className={`hidden sm:block p-1 transition-opacity hover:opacity-75 cursor-pointer ${
-                isScrolled ? 'text-black' : 'text-white'
-              }`}
+              className="p-1 hover:opacity-60 transition-opacity cursor-pointer hidden md:block"
               title="Our Stores"
               aria-label="Stores across India"
             >
-              <MapPin size={18} strokeWidth={1.8} />
+              <MapPin size={17} strokeWidth={1.8} />
             </button>
 
-            {/* Predictive Search */}
+            {/* 3. Search Magnifying Glass */}
             <button
               onClick={onOpenSearch}
-              className={`p-1 transition-opacity hover:opacity-75 cursor-pointer ${
-                isScrolled ? 'text-black' : 'text-white'
-              }`}
+              className="p-1 hover:opacity-60 transition-opacity cursor-pointer hidden sm:block"
               title="Search Products"
               aria-label="Search"
             >
-              <Search size={18} strokeWidth={1.8} />
+              <Search size={17} strokeWidth={1.8} />
             </button>
 
-            {/* Account (Desktop only) */}
+            {/* 4. User Account */}
             <button
               onClick={() => alert("Member authentication portal. Login / Register with mobile or email.")}
-              className={`hidden sm:block p-1 transition-opacity hover:opacity-75 cursor-pointer ${
-                isScrolled ? 'text-black' : 'text-white'
-              }`}
+              className="p-1 hover:opacity-60 transition-opacity cursor-pointer hidden lg:block"
               title="Account"
               aria-label="Account Login"
             >
-              <User size={18} strokeWidth={1.8} />
+              <User size={17} strokeWidth={1.8} />
             </button>
 
-            {/* Cart Trigger with dynamic count */}
+            {/* 5. Wishlist Ribbon Bookmark Icon */}
+            <button
+              onClick={() => alert("Your wishlist is saved.")}
+              className="p-1 hover:opacity-60 transition-opacity cursor-pointer hidden md:block"
+              title="Wishlist"
+              aria-label="Wishlist"
+            >
+              <Bookmark size={17} strokeWidth={1.8} />
+            </button>
+
+            {/* 6. Cart Bag Icon */}
             <button
               onClick={onOpenCart}
-              className={`flex items-center gap-1 p-1 transition-opacity hover:opacity-75 relative font-mono text-xs font-semibold cursor-pointer ${
-                isScrolled ? 'text-black' : 'text-white'
-              }`}
+              className="flex items-center gap-1.5 p-1 hover:opacity-60 transition-opacity cursor-pointer relative"
+              title="Shopping Cart"
               aria-label="Shopping Cart"
             >
-              <ShoppingBag size={18} strokeWidth={1.8} />
-              <span className="tracking-tighter font-mono text-[11px] sm:text-xs">
-                ({cartCount})
-              </span>
+              <div className="relative">
+                {/* Clean cart bag outline matching reference */}
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
+                  <path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4Z"/>
+                  <path d="M3 6h18"/>
+                  <path d="M16 10a4 4 0 0 1-8 0"/>
+                </svg>
+                {cartCount > 0 && (
+                  <span className="absolute -top-1 -right-2 bg-black text-white text-[9px] font-mono font-bold w-4 h-4 rounded-full flex items-center justify-center border border-white">
+                    {cartCount}
+                  </span>
+                )}
+              </div>
+            </button>
+
+            {/* 7. Rounded White Pill Menu Button with 2 Horizontal Lines (=) */}
+            <button
+              onClick={onOpenNavDrawer}
+              className="px-2.5 sm:px-3 py-1.5 rounded-full bg-white text-black shadow-sm border border-neutral-200/80 hover:bg-neutral-100 transition-all flex items-center justify-center cursor-pointer"
+              aria-label="Open Navigation Menu"
+              title="Menu"
+            >
+              <div className="flex flex-col gap-[3.5px] w-3.5 sm:w-4 py-0.5">
+                <span className="w-full h-[1.8px] bg-black rounded-full"></span>
+                <span className="w-full h-[1.8px] bg-black rounded-full"></span>
+              </div>
             </button>
           </div>
         </div>

@@ -2,10 +2,30 @@ import React, { useState, useEffect } from 'react';
 import { X, Play, Pause, ChevronLeft, ChevronRight, ShoppingBag } from 'lucide-react';
 import { storeData } from '../data/storeData';
 
-export default function StoryHighlights({ onSelectCategory }) {
-  const [activeStoryIndex, setActiveStoryIndex] = useState(null);
+export default function StoryHighlights({
+  onSelectCategory,
+  externalStoryIndex = null,
+  onCloseExternal
+}) {
+  const [internalStoryIndex, setInternalStoryIndex] = useState(null);
   const [progress, setProgress] = useState(0);
   const [isPaused, setIsPaused] = useState(false);
+
+  const activeStoryIndex = externalStoryIndex !== null ? externalStoryIndex : internalStoryIndex;
+
+  const setActiveIndex = (idx) => {
+    setInternalStoryIndex(idx);
+    if (idx === null && onCloseExternal) {
+      onCloseExternal();
+    }
+  };
+
+  useEffect(() => {
+    if (externalStoryIndex !== null) {
+      setProgress(0);
+      setIsPaused(false);
+    }
+  }, [externalStoryIndex]);
 
   // Story progression timer
   useEffect(() => {
@@ -16,10 +36,10 @@ export default function StoryHighlights({ onSelectCategory }) {
         if (prev >= 100) {
           // move to next story or close
           if (activeStoryIndex < storeData.stories.length - 1) {
-            setActiveStoryIndex(activeStoryIndex + 1);
+            setActiveIndex(activeStoryIndex + 1);
             return 0;
           } else {
-            setActiveStoryIndex(null);
+            setActiveIndex(null);
             return 0;
           }
         }
@@ -31,19 +51,19 @@ export default function StoryHighlights({ onSelectCategory }) {
   }, [activeStoryIndex, isPaused]);
 
   const openStory = (idx) => {
-    setActiveStoryIndex(idx);
+    setActiveIndex(idx);
     setProgress(0);
     setIsPaused(false);
   };
 
   const closeStory = () => {
-    setActiveStoryIndex(null);
+    setActiveIndex(null);
     setProgress(0);
   };
 
   const nextStory = () => {
     if (activeStoryIndex < storeData.stories.length - 1) {
-      setActiveStoryIndex(activeStoryIndex + 1);
+      setActiveIndex(activeStoryIndex + 1);
       setProgress(0);
     } else {
       closeStory();
@@ -52,7 +72,7 @@ export default function StoryHighlights({ onSelectCategory }) {
 
   const prevStory = () => {
     if (activeStoryIndex > 0) {
-      setActiveStoryIndex(activeStoryIndex - 1);
+      setActiveIndex(activeStoryIndex - 1);
       setProgress(0);
     }
   };

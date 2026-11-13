@@ -33,6 +33,7 @@ export default function App() {
   const [isSearchOpen, setIsSearchOpen] = useState(false);
   const [isNavDrawerOpen, setIsNavDrawerOpen] = useState(false);
   const [quickViewProduct, setQuickViewProduct] = useState(null);
+  const [activeStoryIndex, setActiveStoryIndex] = useState(null);
 
   const handleAddToCart = (product, size = 'M', quantity = 1) => {
     setCartItems((prev) => {
@@ -116,6 +117,7 @@ export default function App() {
         onOpenCart={() => setIsCartOpen(true)}
         onOpenSearch={() => setIsSearchOpen(true)}
         onOpenNavDrawer={() => setIsNavDrawerOpen(true)}
+        onOpenStories={() => setActiveStoryIndex(0)}
         onScrollToStores={scrollToStores}
         onOpenQuickView={(p) => setQuickViewProduct(p)}
       />
@@ -134,7 +136,11 @@ export default function App() {
         <HeroSection onShopNow={scrollToLatestDrop} />
 
         {/* 4. Story Highlights Carousel */}
-        <StoryHighlights onSelectCategory={handleSelectCategory} />
+        <StoryHighlights
+          onSelectCategory={handleSelectCategory}
+          externalStoryIndex={activeStoryIndex}
+          onCloseExternal={() => setActiveStoryIndex(null)}
+        />
 
         {/* 5. Latest Drop Featured Collection */}
         <FeaturedCollection
